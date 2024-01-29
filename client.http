@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3002
+@id = 65b413d719faa6888e5fab6a
+
+# @name create_account
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Fernanda Mendes",
+  "email": "oldmendesf@gmail.com",
+  "password": "123456"
+}
+
+###
+
+# @name list_all_users
+GET {{baseUrl}}/auth/users
+Content-Type: application/json
+
+
+###
+
+# @name find_user_by_id
+GET {{baseUrl}}/auth/user/{{id}}
+Content-Type: application/json
+
+###
+
+# @name update_name
+PATCH {{baseUrl}}/auth/user/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Fernanda Thamiris Ferreira Mendes"
+}
