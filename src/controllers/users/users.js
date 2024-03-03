@@ -1,9 +1,9 @@
-import { UserModel } from '../models/User.js';
+import { UserModel } from '../../models/User.js';
 import {
   create,
   findAllUsers,
   updateDataUser
-} from '../repositories/userRepository.js'
+} from '../../repositories/userRepository.js'
 // import mongoose from 'mongoose';
 
 export const createUser = async (req, res) => {
@@ -17,7 +17,7 @@ export const createUser = async (req, res) => {
 
     await create(req.body)
 
-    return res.send(201).json({
+    return res.status(201).send({
       error: false,
       massage: 'Usuário criado com suecesso!',
     })

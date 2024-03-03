@@ -1,5 +1,7 @@
 @baseUrl = http://localhost:3002
-@id = 65b413d719faa6888e5fab6a
+@id = 65b80ba3ee0bf799524fa162
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YjgwYmEzZWUwYmY3OTk1MjRmYTE2MiIsImlhdCI6MTcwOTQwMjc1NywiZXhwIjoxNzA5NDg5MTU3fQ.gakDsCSI2k0rlbQwd5FCyvCF0R73wHBc75cVqPCTsY4
 
 # @name create_account
 POST {{baseUrl}}/auth/register
@@ -8,7 +10,7 @@ Content-Type: application/json
 {
   "name": "Fernanda Mendes",
   "email": "oldmendesf@gmail.com",
-  "password": "123456"
+  "password": "12345"
 }
 
 ###
@@ -32,4 +34,114 @@ Content-Type: application/json
 
 {
   "name": "Fernanda Thamiris Ferreira Mendes"
+}
+
+###
+
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "oldmendesf@gmail.com",
+  "password": "12345"
+}
+
+# -------------------------NEWS----------------------------
+###
+
+# @name new
+POST {{baseUrl}}/news
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Ultima new",
+  "text": "Teste da nova news 2",
+  "banner": "Imagembonita.jpeg"
+}
+
+###
+
+# @name list_all_news
+GET {{baseUrl}}/news?limit=6&offset=0
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name list_top_news
+GET {{baseUrl}}/news/top
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name new_by_id
+GET {{baseUrl}}/news/65baafeec6ee477a19b9085d
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name search_by_title
+GET {{baseUrl}}/news/search?title=Teste
+Content-Type: application/json
+
+###
+
+# @name find_news_by_user
+GET {{baseUrl}}/news/by-user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name update_post
+PATCH {{baseUrl}}/news/65baafeec6ee477a19b9085
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Atualizada",
+  "text": "Text atualizado",
+  "banner": "ImagemAtualizada.jpeg"
+}
+
+
+###
+
+# @name delete_post
+DELETE {{baseUrl}}/news/65baafeec6ee477a19b9085d
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+###
+
+# @name like_post
+PATCH {{baseUrl}}/news/like/65bbe3f5bfb44ac5be827e9e
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name comment_post
+PATCH {{baseUrl}}/news/comment/65bbe3f5bfb44ac5be827e9e
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "comment": "Segundo comentário"
+}
+
+###
+
+# @name comment_post
+PATCH {{baseUrl}}/news/comment/65bbe3f5bfb44ac5be827e9e/48ilbs2u
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "comment": "Segundo comentário"
 }

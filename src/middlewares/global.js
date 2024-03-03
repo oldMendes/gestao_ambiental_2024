@@ -19,8 +19,6 @@ const validUser = async (req, res, next) => {
     return res.status(400).send({ message: 'User not found' });
   }
 
-  console.log(user);
-
   req.id = id;
   req.user = user;
 
